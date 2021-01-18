@@ -6,7 +6,7 @@ N1的openwrt来自mingxiaoyu的另一个项目[N1Openwrt](https://github.com/min
 # 如何使用
 
 1. fork项目
-2. 上传51+0（Armbian_20.10_Aml-s9xxx_buster_5.4.77-flippy-49+o.img.xz）的flippy的Armbian底包到Google云盘
+2. 上传51+0（Armbian_20.10_Aml-s9xxx_buster_5.4.86-flippy-51+o.img.xz）的flippy的Armbian底包到Google云盘
 3. 创建分享链接。大概格式：https://drive.google.com/u/0/uc?export=download&id=xxxx 然后在 Secrets中新建FLIPPY_51_FILEID，值为51+o分享链接中id后面的xxxxxxx
 4. 修改n1img.yml文件 
   * 找到这句 wget  https://github.com/mingxiaoyu/N1Openwrt/releases/download/$version/openwrt-armvirt-64-default-rootfs.tar.gz
