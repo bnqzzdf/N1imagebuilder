@@ -8,7 +8,7 @@ fi
 # 源镜像文件
 ##########################################################################
 OPENWRT_VER="R20.10.20"
-KERNEL_VERSION="5.4.77-flippy-49+o"
+KERNEL_VERSION="5.4.86-flippy-51+o"
 SUBVER=$1
 # Armbian
 LNX_IMG="/opt/imgs/Armbian_20.10_Aml-s9xxx_buster_${KERNEL_VERSION}.img"
@@ -23,7 +23,7 @@ NEWUUID="n"
 ###########################################################################
 
 # 目标镜像文件
-TGT_IMG="${WORK_DIR}/N1_49_Openwrt.img"
+TGT_IMG="${WORK_DIR}/N1_51_Openwrt.img"
 
 # 可选参数：是否替换n1的dtb文件 y:替换 n:不替换
 REPLACE_DTB="n"
