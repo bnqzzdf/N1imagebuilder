@@ -86,15 +86,8 @@ U_BOOT_EXT=0
 cat <<EOF
 -------------------
 请选择盒子型号: 
-1. X96-Max+(S905x3) 注意：若选择本型号，将会刷入新的bootloader!
-2. HK1 Box(S905x3)
-3. H96 Max X3(S905x3)
-
-4. X96-Max(S905x2)
-
-5. X96-Max+(S905x3) 超频版 注意：若选择本型号，将会刷入新的bootloader!
-6. HK1 Box(S905x3) 超频版
-7. H96 Max X3(S905x3) 超频版
+1. Belink GT-King
+2. Belink GT-King Pro
 
 0. 其它
 -------------------
@@ -102,24 +95,10 @@ EOF
 echo -ne "请选择: "
 read boxtype
 case $boxtype in 
-	1) FDTFILE="meson-sm1-x96-max-plus.dtb"
+	1) FDTFILE="meson-g12b-gtking.dtb"
 		U_BOOT_EXT=1
 		;;
-	2) FDTFILE="meson-sm1-hk1box-vontar-x3.dtb"
-		U_BOOT_EXT=1
-		;;
-	3) FDTFILE="meson-sm1-h96-max-x3.dtb"
-		U_BOOT_EXT=1
-		;;
-	4) FDTFILE="meson-g12a-x96-max.dtb"
-		;;
-	5) FDTFILE="meson-sm1-x96-max-plus-oc.dtb"
-		U_BOOT_EXT=1
-		;;
-	6) FDTFILE="meson-sm1-hk1box-vontar-x3-oc.dtb"
-		U_BOOT_EXT=1
-		;;
-	7) FDTFILE="meson-sm1-h96-max-x3-oc.dtb"
+	2) FDTFILE="meson-g12b-gtking-pro.dtb"
 		U_BOOT_EXT=1
 		;;
 	0) cat <<EOF

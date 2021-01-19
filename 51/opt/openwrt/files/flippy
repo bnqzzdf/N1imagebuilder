@@ -12,9 +12,11 @@ BACKUP_LIST='./etc/AdGuardHome.yaml \
 ./etc/ksmbd/ksmbdpwd.db \
 ./etc/config/ \
 ./etc/openclash/backup/ \
+./etc/openclash/core/ \
 ./etc/openclash/config/ \
 ./etc/openclash/custom/ \
 ./etc/openclash/game_rules/ \
+./etc/openclash/rule_provider/ \
 ./etc/openclash/proxy_provider/ \
 ./etc/dnsforwarder/ \
 ./etc/dnsmasq.conf \

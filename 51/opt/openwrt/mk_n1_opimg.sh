@@ -7,13 +7,35 @@ fi
 
 # 源镜像文件
 ##########################################################################
-OPENWRT_VER="R20.10.20"
+OPENWRT_VER="R20.12.12"
 KERNEL_VERSION="5.4.86-flippy-51+o"
 SUBVER=$1
 # Armbian
 LNX_IMG="/opt/imgs/Armbian_20.10_Aml-s9xxx_buster_${KERNEL_VERSION}.img"
+
+# +o OR + flag
+if echo $KERNEL_VERSION | grep -E '*\+$';then
+    SFE_FLAG=1
+    FLOWOFFLOAD_FLAG=0
+else
+    SFE_FLAG=0
+    FLOWOFFLOAD_FLAG=1
+fi
+
 # Openwrt 
-OPWRT_ROOTFS_GZ="${PWD}/openwrt-armvirt-64-default-rootfs.tar.gz"
+OP_ROOT_TGZ="openwrt-armvirt-64-default-rootfs.tar.gz"
+OPWRT_ROOTFS_GZ="${PWD}/${OP_ROOT_TGZ}"
+if [ $SFE_FLAG -eq 1 ];then
+    if [ -f "${PWD}/sfe/${OP_ROOT_TGZ}" ];then
+        OPWRT_ROOTFS_GZ="${PWD}/sfe/${OP_ROOT_TGZ}"
+    fi
+elif [ ${FLOWOFFLOAD_FLAG} -eq 1 ];then
+    if [ -f "${PWD}/flowoffload/${OP_ROOT_TGZ}" ];then
+        OPWRT_ROOTFS_GZ="${PWD}/flowoffload/${OP_ROOT_TGZ}"
+    fi
+fi
+echo "Use $OPWRT_ROOTFS_GZ for openwrt rootfs!"
+
 
 # NEW UUID
 NEWUUID="n"
@@ -70,6 +92,10 @@ BAL_ETH_IRQ="${PWD}/files/balethirq.pl"
 # 20201026 add
 FIX_CPU_FREQ="${PWD}/files/fixcpufreq.pl"
 SYSFIXTIME_PATCH="${PWD}/files/sysfixtime.patch"
+# 20201128 add
+SSL_CNF_PATCH="${PWD}/files/openssl_engine.patch"
+# 20201212 add
+BAL_CONFIG="${PWD}/files/s905x/balance_irq"
 ###########################################################################
 
 # 用户为runner
@@ -279,6 +305,7 @@ if [ -f $BAL_ETH_IRQ ];then
     sudo cp -v $BAL_ETH_IRQ usr/sbin
     sudo chmod 755 usr/sbin/balethirq.pl
     sudo sed -e "/exit/i\/usr/sbin/balethirq.pl" -i etc/rc.local
+	[ -f ${BAL_CONFIG} ] && sudo cp -v ${BAL_CONFIG} etc/config/
 fi
 
 if [ -f $FIX_CPU_FREQ ];then
@@ -287,6 +314,9 @@ if [ -f $FIX_CPU_FREQ ];then
 fi
 if [ -f $SYSFIXTIME_PATCH ];then
     sudo patch -p1 < $SYSFIXTIME_PATCH
+fi
+if [ -f $SSL_CNF_PATCH ];then
+    sudo patch -p1 < $SSL_CNF_PATCH
 fi
 
 [ -d ${FMW_HOME} ] && sudo cp -a ${FMW_HOME}/* lib/firmware/
@@ -297,9 +327,6 @@ fi
 [ -d sys ] || sudo mkdir -p sys
 [ -d proc ] || sudo mkdir -p proc
 [ -d run ] || sudo mkdir -p run
-
-
-		  
 sudo sed -e 's/ttyAMA0/ttyAML0/' -i ./etc/inittab
 sudo sed -e 's/ttyS0/tty0/' -i ./etc/inittab
 sudo sed -e 's/\/opt/\/etc/' -i ./etc/config/qbittorrent
