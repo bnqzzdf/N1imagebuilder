@@ -27,7 +27,7 @@ jobs:
         include:
           - flippy_name: 51
             flippy_filename: Armbian_20.10_Aml-s9xxx_buster_5.4.86-flippy-51+o.img.xz
-            release_name: N1_51_Openwrt.img
+            release_name: N1_Openwrt_buster_5.4.86-flippy-51+o.img
     env:
       FLIPPY_NAME: ${{ matrix.flippy_name }}   
       FLIPPY_FILENAME: ${{ matrix.flippy_filename }}   
