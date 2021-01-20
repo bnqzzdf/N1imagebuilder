@@ -45,7 +45,7 @@ NEWUUID="n"
 ###########################################################################
 
 # 目标镜像文件
-TGT_IMG="${WORK_DIR}/N1_51_Openwrt.img"
+TGT_IMG="${WORK_DIR}/N1_Openwrt_buster_5.4.86-flippy-51+o.img"
 
 # 可选参数：是否替换n1的dtb文件 y:替换 n:不替换
 REPLACE_DTB="n"
