@@ -7,7 +7,7 @@ fi
 
 # 源镜像文件
 ##########################################################################
-OPENWRT_VER="R20.12.12"
+OPENWRT_VER="R21.1.21"
 KERNEL_VERSION="5.4.86-flippy-51+o"
 SUBVER=$1
 # Armbian
@@ -297,7 +297,7 @@ if [ -f $BANNER ];then
     sudo echo " Base on OpenWrt ${OPENWRT_VER} by lean & lienol" >> etc/banner
     sudo echo " Kernel ${KERNEL_VERSION}" >> etc/banner
     TODAY=$(date +%Y-%m-%d)
-    sudo echo " Packaged by mingxiaoyu on $TODAY" >> etc/banner
+    sudo echo " Packaged by bnqzzdf on $TODAY" >> etc/banner
     sudo echo >> etc/banner
 fi
 
