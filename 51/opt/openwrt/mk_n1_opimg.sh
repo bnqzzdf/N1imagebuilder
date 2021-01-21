@@ -294,7 +294,6 @@ fi
 [ -f $FLIPPY ] && sudo cp $FLIPPY usr/sbin/
 if [ -f $BANNER ];then
     sudo cp -f $BANNER etc/banner
-    sudo echo " Base on OpenWrt ${OPENWRT_VER} by lean & lienol" >> etc/banner
     sudo echo " Kernel ${KERNEL_VERSION}" >> etc/banner
     TODAY=$(date +%Y-%m-%d)
     sudo echo " Packaged by bnqzzdf on $TODAY" >> etc/banner
